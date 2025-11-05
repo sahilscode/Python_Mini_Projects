@@ -111,5 +111,12 @@ geoBtn.addEventListener('click', () => {
   }, {timeout:10000});
 });
 
+console.log('script.js loaded — DOM ready check follows');
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM fully loaded and parsed');
+    // small visual check flag: add a class so you can inspect if CSS and JS loaded properly
+    document.documentElement.classList.add('app-assets-loaded');
+});
 // clear status when typing
 input.addEventListener('input', () => setStatus(''));

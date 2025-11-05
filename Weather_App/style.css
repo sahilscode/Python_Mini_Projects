@@ -1,125 +1,142 @@
-* {
+/* ...existing code... */
+html, body {
+    height: 100%;
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    min-height: 100vh;
-    background-image: url('https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&w=1920&h=1080');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
+    color: #fff;
+
+    /* Reliable background: use a direct Unsplash image (change URL if needed) */
+    background-image: url('https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&w=1920&q=80');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .container {
     width: 100%;
-    max-width: 600px;
-    margin: 2rem;
+    max-width: 640px;
+    margin: 0; /* ensure flex centering controls placement */
     padding: 2rem;
-    backdrop-filter: blur(10px);
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(6px);
+    border-radius: 12px;
     text-align: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
 }
 
 h1 {
-    margin-bottom: 2rem;
-    font-size: 2.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
 }
 
 .search-container {
     position: relative;
-    margin-bottom: 1rem;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto 1rem auto;
+    max-width: 420px;
 }
 
 #locationInput {
     width: 100%;
-    padding: 1rem;
+    padding: 0.9rem 1rem;
     border: none;
     border-radius: 25px;
-    background: rgba(255, 255, 255, 0.9);
-    font-size: 1.1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: rgba(255,255,255,0.9);
+    color: #111;
+    font-size: 1rem;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+}
+
+.location-dropdown { display:none; }
+.location-dropdown .location-item {
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  border-top: 1px solid rgba(0,0,0,0.05);
 }
 
 .location-dropdown {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 8px);
     left: 0;
     right: 0;
-    background: white;
-    border-radius: 0 0 10px 10px;
+    background: #fff;
+    color: #222;
+    border-radius: 8px;
     max-height: 200px;
     overflow-y: auto;
     display: none;
-    z-index: 1000;
+    z-index: 50;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+.location-dropdown.active {
+    display: block;
+}
+
+.location-item {
+    padding: 0.7rem 0.9rem;
+    cursor: pointer;
+}
+
+.location-dropdown .location-item:focus,
+.location-dropdown .location-item:hover {
+  background: rgba(0,0,0,0.08);
+  outline: none;
 }
 
 .buttons {
     display: flex;
-    gap: 1rem;
+    gap: 0.8rem;
     justify-content: center;
-    margin-bottom: 2rem;
+    margin: 1rem 0 1.5rem 0;
 }
 
 button {
-    padding: 0.8rem 1.5rem;
+    padding: 0.7rem 1.2rem;
     border: none;
-    border-radius: 25px;
+    border-radius: 20px;
     background: #2196f3;
-    color: white;
+    color: #fff;
     cursor: pointer;
-    transition: transform 0.2s, background 0.2s;
-    font-size: 1rem;
+    transition: transform 0.15s ease, background 0.15s ease;
+    font-size: 0.95rem;
 }
 
 button:hover {
     background: #1976d2;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
 }
 
 .weather {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 2rem;
-    border-radius: 15px;
-    margin-top: 2rem;
-    backdrop-filter: blur(5px);
+    background: rgba(255,255,255,0.06);
+    padding: 1.2rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    backdrop-filter: blur(4px);
 }
 
 .status {
-    text-align: center;
-    margin: 1rem 0;
-    color: #ff9800;
+    color: #ffcc66;
+    margin: 0.8rem 0;
 }
 
 .footer {
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 1.2rem;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.85);
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-    .container {
-        margin: 1rem;
-        padding: 1rem;
-    }
-    
-    .buttons {
-        flex-direction: column;
-    }
-    
-    h1 {
-        font-size: 2rem;
-    }
+/* Responsive */
+@media (max-width: 520px) {
+    .container { padding: 1rem; margin: 1rem; max-width: 95%; }
+    h1 { font-size: 1.6rem; }
+    .buttons { flex-direction: column; gap: 0.6rem; }
 }
+/* ...existing code... */
